@@ -1,15 +1,26 @@
-import { Link } from 'gatsby'
+import React, { FunctionComponent } from 'react'
+
+import { Link, PageProps } from 'gatsby'
+
 import ArrowRightBoxIcon from 'mdi-react/ArrowRightBoxIcon'
 import ArrowRightIcon from 'mdi-react/ArrowRightIcon'
-import * as React from 'react'
+
+import Layout from '../components/Layout'
 import { ContentSection } from '../components/content/ContentSection'
 import { IntegrationsSection } from '../components/IntegrationsSection'
-import Layout from '../components/Layout'
 import { CustomerLogosSectionAnimated } from '../components/product/CustomerLogosSectionAnimated'
-import GetStarted from '../components/GetStarted'
+import { SelfHostedSection } from '../components/SelfHostedSection'
+import { buttonStyle, buttonLocation } from '../tracking'
 
-const Index: React.FunctionComponent = (props: any) => (
-    <Layout location={props.location}>
+const Index: FunctionComponent<PageProps> = props => (
+    <Layout
+        location={props.location}
+        meta={{
+            title: 'Sourcegraph | Code Intelligence Platform',
+            description:
+                'Address security risks, onboard to a new codebase, identify the root cause of incidents, promote code reuse, improve code health, and more with Soucegraph.',
+        }}
+    >
         <div className="home">
             <div className="home__hero mb-6">
                 <div className="home__intro container">
@@ -23,16 +34,26 @@ const Index: React.FunctionComponent = (props: any) => (
                                 security risks, root-cause incidents, and more.
                             </p>
                             <div className="pt-1">
-                                <Link className="btn btn-primary m-3" to="/get-started" title="Get started">
+                                <Link
+                                    className="btn btn-primary m-3"
+                                    to="/get-started"
+                                    title="Get started"
+                                    data-button-style={buttonStyle.primary}
+                                    data-button-location={buttonLocation.hero}
+                                    data-button-type="cta"
+                                >
                                     Get started <ArrowRightIcon className="ml-1" />
                                 </Link>
-                                <a
+                                <Link
                                     className="btn btn-outline-primary m-3"
-                                    href="https://info.sourcegraph.com/demo-request"
+                                    data-button-style={buttonStyle.outline}
+                                    data-button-location={buttonLocation.hero}
+                                    data-button-type="cta"
+                                    to="/demo"
                                     title="Request a demo"
                                 >
                                     Request a demo <ArrowRightIcon className="ml-1" />
-                                </a>
+                                </Link>
                             </div>
                             <p className="my-3 col-9 mx-auto">
                                 Product or installation questions?{' '}
@@ -220,7 +241,7 @@ const Index: React.FunctionComponent = (props: any) => (
                 </div>
             </ContentSection>
 
-            <ContentSection className="mt-6">
+            <ContentSection className="my-6">
                 <div className="row">
                     <div className="col-lg-5">
                         <div className="text-uppercase mb-3">Batch Changes</div>
@@ -251,7 +272,39 @@ const Index: React.FunctionComponent = (props: any) => (
                 </div>
             </ContentSection>
 
-            <GetStarted className="bg-gradient-green-blue mt-6" />
+            <ContentSection className="my-6">
+                <div className="row flex-wrap-reverse">
+                    <div className="col-lg-7 pr-lg-6 mt-3">
+                        <div className="container video-embed embed-responsive embed-responsive-16by9 ">
+                            <iframe
+                                className="embed-responsive-item"
+                                src="https://www.youtube-nocookie.com/embed/fMCUJQHfbUA?autoplay=0&amp;cc_load_policy=0&amp;start=0&amp;end=0&amp;loop=0&amp;controls=1&amp;modestbranding=1&amp;rel=0"
+                                allowFullScreen={true}
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                frameBorder={0}
+                                title="Sourcegraph Code Insights"
+                            ></iframe>
+                        </div>
+                    </div>
+                    <div className="col-lg-5">
+                        <div className="text-uppercase mb-3">Code Insights</div>
+                        <h2>Track what really matters to you and your team</h2>
+                        <p>
+                            With Code Insights, you can accurately understand how different initiatives are progressing
+                            over time and answer questions that used to be difficult or impossible to answer before.
+                            Using the codebase as the source of truth, you can track migrations, code smells, versions,
+                            and more with visualizations that are easy to customize and kept automatically up to date.
+                        </p>
+                        <div className="pt-1">
+                            <Link className="d-flex align-items-center" to="/code-insights">
+                                Learn more about Code Insights <ArrowRightBoxIcon className="icon-inline ml-1" />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </ContentSection>
+
+            <SelfHostedSection />
         </div>
     </Layout>
 )

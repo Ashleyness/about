@@ -9,7 +9,11 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "lib": ["dom", "es2015", "es2017"],
-  },
-  "baseUrl": ".",
-  "include": ["./src/**/*", "./typings/**/*"],
+    "baseUrl": "src",
+    "include": ["./src/**/*", "./typings/**/*"],
+    "paths": {
+      "@components": ["components/"],
+      "@styles": ["css"]
+    }
+  }
 }
